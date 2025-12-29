@@ -1,16 +1,47 @@
-# React + Vite
+# VinnoDrive - Simple File Upload Backend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Setup
 
-Currently, two official plugins are available:
+1. Install dependencies:
+```bash
+npm install
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+2. Make sure MongoDB is running on your local machine
 
-## React Compiler
+3. Start the server:
+```bash
+npm start
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## API Endpoints
 
-## Expanding the ESLint configuration
+### Upload File
+- **POST** `/upload`
+- Form-data with key `file`
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### List Files
+- **GET** `/files`
+
+### Download File
+- **GET** `/download/:id`
+
+### Delete File
+- **DELETE** `/delete/:id`
+
+## Example using curl
+
+Upload:
+```bash
+curl -F "file=@yourfile.pdf" http://localhost:3000/upload
+```
+
+List files:
+```bash
+curl http://localhost:3000/files
+```
+
+Download:
+```bash
+curl http://localhost:3000/download/FILE_ID --output downloaded.pdf
+```
