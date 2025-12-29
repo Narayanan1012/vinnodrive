@@ -1,6 +1,6 @@
 # VinnoDrive
 
-A simple and secure file storage application that allows users to upload, view, download, and delete files.
+A simple file storage application that allows users to upload, view, download, and delete files.
 
 ![VinnoDrive Screenshot](image.png)
 
@@ -10,8 +10,7 @@ A simple and secure file storage application that allows users to upload, view, 
 - 📋 **File Listing** - View all uploaded files with name, size, and upload date
 - 📥 **File Download** - Download files directly to your device
 - 🗑️ **File Delete** - Remove files from storage
-- 🔒 **SHA-256 Hashing** - Each file is hashed for integrity verification
-- 🎨 **Modern UI** - Dark-themed, responsive design
+- 🎨 **Modern UI** - Dark-themed, responsive flexbox design
 
 ## Tech Stack
 
@@ -25,10 +24,9 @@ A simple and secure file storage application that allows users to upload, view, 
 
 - **Node.js** - Runtime environment
 - **Express.js** - Web framework
-- **MongoDB** - Database (Atlas cloud)
+- **MongoDB Atlas** - Cloud database
 - **Mongoose** - MongoDB ODM
 - **Multer** - File upload handling
-- **Crypto** - SHA-256 file hashing
 
 ### Other
 
@@ -40,7 +38,7 @@ A simple and secure file storage application that allows users to upload, view, 
 
 - Node.js (v16 or higher)
 - npm (v8 or higher)
-- MongoDB Atlas account (or local MongoDB)
+- MongoDB Atlas account
 
 ## Installation
 
@@ -66,43 +64,25 @@ A simple and secure file storage application that allows users to upload, view, 
    PORT=5000
    ```
 
-4. **Create uploads directory**
-   ```bash
-   mkdir uploads
-   ```
-
 ## Running the Application
 
-You need to run both the backend and frontend servers.
+Run both servers in separate terminals:
 
-### Terminal 1 - Backend Server
+### Terminal 1 - Backend
 
 ```bash
 npm run server
 ```
 
-This starts the Express server on `http://localhost:5000`
+Runs on `http://localhost:5000`
 
-### Terminal 2 - Frontend Dev Server
+### Terminal 2 - Frontend
 
 ```bash
 npm run dev
 ```
 
-This starts the Vite dev server on `http://localhost:5173`
-
-### Open in Browser
-
-Navigate to `http://localhost:5173`
-
-## Available Scripts
-
-| Command           | Description                    |
-| ----------------- | ------------------------------ |
-| `npm run dev`     | Start Vite frontend dev server |
-| `npm run server`  | Start Express backend server   |
-| `npm run build`   | Build frontend for production  |
-| `npm run preview` | Preview production build       |
+Runs on `http://localhost:5173`
 
 ## API Endpoints
 
@@ -119,64 +99,17 @@ Navigate to `http://localhost:5173`
 vinnodrive/
 ├── src/
 │   ├── frontend/
-│   │   ├── basic_Components.jsx   # Main file upload component
-│   │   └── basic_Components.css   # Component styles
-│   └── main.jsx                   # React entry point
-├── uploads/                       # Uploaded files storage
-├── server.js                      # Express backend server
-├── vite.config.js                 # Vite configuration
-├── package.json                   # Dependencies and scripts
-├── .env                           # Environment variables (not in git)
-└── README.md                      # This file
+│   │   ├── basic_Components.jsx
+│   │   └── basic_Components.css
+│   └── main.jsx
+├── uploads/
+├── server.js
+├── vite.config.js
+├── package.json
+├── .env
+└── README.md
 ```
-
-## Configuration
-
-### Vite Proxy
-
-The frontend uses a proxy to communicate with the backend. Configured in `vite.config.js`:
-
-```javascript
-proxy: {
-  '/api': {
-    target: 'http://localhost:5000',
-    changeOrigin: true,
-    rewrite: (path) => path.replace(/^\/api/, '')
-  }
-}
-```
-
-### File Upload Limits
-
-- Maximum file size: **10MB**
-- Rate limit: **100 requests per 15 minutes**
-
-## Troubleshooting
-
-### Port already in use
-
-```bash
-# Windows - Kill process on port
-taskkill /F /IM node.exe
-
-# Or change port in .env file
-PORT=5001
-```
-
-### MongoDB connection error
-
-- Verify your connection string in `.env`
-- Ensure special characters in password are URL-encoded (e.g., `@` → `%40`)
-- Check MongoDB Atlas IP whitelist settings
-
-### CORS errors
-
-Make sure the backend server is running before the frontend.
 
 ## License
 
-MIT License - feel free to use this project for learning or personal use.
-
-## Author
-
-Built with ❤️ by VinnoDrive Team
+MIT License
