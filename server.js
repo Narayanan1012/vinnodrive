@@ -113,9 +113,12 @@ app.get('/download/:id', async (req, res) => {
 // List all files
 app.get('/files', async (req, res) => {
   try {
+    console.log('Fetching files...');
     const files = await File.find().select('-__v');
+    console.log('Files found:', files);
     res.json(files);
   } catch (error) {
+    console.error('Error in /files:', error);
     res.status(500).json({ error: error.message });
   }
 });
